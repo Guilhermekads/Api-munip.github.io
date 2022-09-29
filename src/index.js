@@ -1,13 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 require('./controllers/authController')(app)
 require('./controllers/projectController')(app)
 
-app.listen(3000,
-    console.log('server listening on port 3000'))
+app.listen(process.env.PORT || 3000)

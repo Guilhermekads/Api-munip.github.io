@@ -21,6 +21,7 @@ module.exports = (req, res, next)=>{
         if(err) return res.status(401).send({error:'token invalid'})
 
         req.userId = decoded.id
+        req.userName = decoded.name
 
         return next()
     } )

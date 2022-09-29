@@ -49,10 +49,13 @@ router.post('/transferir', async (req, res)=>{
         if(user.carbs >= value){
             await user.updateOne({carbs:user.carbs - value})
             await user2.updateOne({carbs:user2.carbs + value})
+
+
+             return res.send({Enviado:user.name + " " + user.SecondName, Para:user2.name + " " + user2.SecondName, Quantiedade: value + " carbs"})  
         }
         
 
-        return res.send({user, user2})    
+         
             
         }catch (err){
             return res.status(400).send({error: err})
@@ -76,7 +79,7 @@ router.post('/transferir', async (req, res)=>{
 
         res.send({
             user,
-            token: generateToken({id: user.id})
+            token: generateToken({id: user})
         })
     })
 
